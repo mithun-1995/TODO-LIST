@@ -15,17 +15,4 @@ export class AppComponent {
 
 	}
 
-  /*
-     this function will check for user login
-  */
-  todoLogin(){
-    console.log("User Details: ",this.userObject);
-
-      var params = {
-        params: this.userObject
-      }
-      this.http.get('/api/v1/', params).subscribe((data:any) => {
-         console.log(data);
-      });    
-  }
 }

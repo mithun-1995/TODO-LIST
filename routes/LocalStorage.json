@@ -1,11 +1,33 @@
 {
-    "Users" : {
-        "Mithun" : {
-          "username" : "Mithun",
-          "password" : "12345"
-        }
+  "Users": {
+    "Mithun3237": {
+      "username": "Mithun3237",
+      "password": "12345"
     },
-    "ToDoList" : {
-      "User_ID" : []
+    "Mithun32": {
+      "username": "Mithun32",
+      "password": "12345"
     }
+  },
+  "ToDoList": {
+    "Mithun3237": {
+      "454546444444664": {
+        "userID": "111111",
+        "note": "dsfsd",
+        "desc": "dsfdf  dfsdfg gsfg"
+      },
+      "454546444444662": {
+        "userID": "Mithun3237",
+        "note": "dsfsd",
+        "desc": "dsfdf  dfsdfg gsfg"
+      }
+    },
+    "Mithun32": {
+      "454546444444662": {
+        "userID": "Mithun32",
+        "note": "dsfsd",
+        "desc": "dsfdf  dfsdfg gsfg"
+      }
+    }
+  }
 }

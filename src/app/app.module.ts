@@ -17,11 +17,15 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 //
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { LogInComponent } from './log-in/log-in.component'; 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoListComponent,
+    LogInComponent
   ],
   imports: [
     BrowserModule,

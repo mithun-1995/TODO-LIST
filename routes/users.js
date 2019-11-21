@@ -19,9 +19,9 @@ router.get('/', async function(req, res, next)
 		var userData = JSON.parse(data).Users;
 
 		if(userData[username] && userData[username].password == password) {
-			res.status(200).json(userData);
+			res.status(200).json({sucess: userData});
 		} else {
-			res.status(404).json({erro : "User not found"});
+			res.status(404).json({error : "User not found"});
 		}
 	});
 	
