@@ -28,8 +28,7 @@ export class LogInComponent implements OnInit {
         (data:any) => {
           console.log(data);
           var userID = Object.keys(data.sucess)[0];
-          console.log(userID);
-          this.router.navigate(['/user/' + userID])
+          this.router.navigate(['/user',userID])
         },
         // Errors will call this callback instead:
         err => {
