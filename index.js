@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/v1/', users);
-app.use('/api/v1/todo', todo);
+app.use('/api/v1/todos', todo);
 
 app.listen(8080, function(){
   console.log("Listing to port: 8080")

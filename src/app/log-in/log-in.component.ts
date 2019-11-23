@@ -26,9 +26,10 @@ export class LogInComponent implements OnInit {
     this.http.get('/api/v1/', params).subscribe(
          // Successful responses call the first callback.
         (data:any) => {
-          console.log(data);
-          var userID = Object.keys(data.sucess)[0];
-          this.router.navigate(['/user',userID])
+          console.log(data)
+          var userid = data.success.username;
+          console.log(userid)
+          this.router.navigate(['/user/'+userid])
         },
         // Errors will call this callback instead:
         err => {

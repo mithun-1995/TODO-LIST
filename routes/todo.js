@@ -12,6 +12,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 /* GET todo listing. */
 router.get('/getTodos/:userId', async function(req, res, next) {
     var userID = req.params.userId;
+    console.log("USer :",userID);
     service.getTodoForUSer(userID, function(dataObj) {
         res.json({ data  : dataObj})
     });

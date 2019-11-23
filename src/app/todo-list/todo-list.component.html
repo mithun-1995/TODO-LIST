@@ -1,1 +1,27 @@
-<p>todo-list works!</p>
+<br>
+<div fxLayout="row" fxLayout-align="center center">
+    <div fxFlex="20%"></div>
+    <mat-card fxFlex="30%" class="example-card">
+        <div fxLayout="row" fxLayout-align="start center">
+            <div fxFlex><h3 style="margin: 0px;">User : {{userId}}</h3></div>
+            <div>
+                <mat-icon color="accent">add_circle</mat-icon>
+            </div>
+        </div>
+        <hr>
+        <mat-card-content fxLayout="column" fxLayoutGap="10px">
+            <mat-card fxFlex *ngFor="let item of todoList | keyvalue" class="example-card" ng-init="toggleObj[item.key] = false">
+                <div fxLayout="row" fxLayout-align="center center" style="cursor: pointer;" (click)="toggleObj[item.key] = !toggleObj[item.key]">
+                    <div fxFlex="80%"><b>{{item.value.note}}</b></div>
+                    <div><mat-icon color="primary" style="font-size: 20px;cursor: pointer;">edit</mat-icon></div>
+                    <div><mat-icon color="warn" style="font-size: 20px;cursor: pointer;">delete</mat-icon></div>
+                </div>
+                <mat-card-content *ngIf="toggleObj[item.key]">
+                        {{item.value.desc}}
+                </mat-card-content>
+            </mat-card>
+        </mat-card-content>
+    </mat-card>
+    <div fxFlex="30%"></div>
+    <div fxFlex="20%"></div>
+</div>

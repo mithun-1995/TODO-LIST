@@ -10,19 +10,30 @@ import { HttpClient } from '@angular/common/http';
 export class TodoListComponent implements OnInit {
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
-    this.route.params.subscribe(params => {
-      console.log(params['user']); // (+) converts string 'id' to a number
-
-      // In a real app: dispatch action to load the details here.
-   });
+    
    }
 
   userId:any;
-  ngOnInit() {
-    //get todo list for specific user
-    this.userId = this.route.snapshot.params['userid']
-    console.log(this.userId)
-
+  todoList:any;
+  toggleObj:any;
+    ngOnInit() {
+      this.toggleObj = {};
+      //get todo list for specific user
+      this.userId = this.route.snapshot.params.userid;
+      console.log(this.userId)
+      this.http.get('/api/v1/todos/getTodos/'+this.userId).subscribe(
+      (result:any) => {
+        console.log(result.data);
+        this.todoList = result.data;
+      },
+      err => {
+        console.log('Something went wrong!',err.error);
+      }
+  ); 
   }
+
+  objectKeys(obj) {
+    return Object.keys(obj);
+}
 
 }

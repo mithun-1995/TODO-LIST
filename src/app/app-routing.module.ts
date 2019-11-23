@@ -6,9 +6,7 @@ import { LogInComponent } from './log-in/log-in.component';
 
 const routes: Routes = [
   { path: '', component: LogInComponent },
-  { path: 'user', component: TodoListComponent , children: [
-    { path: ':userid', component: TodoListComponent },
-  ]},
+  { path: 'user/:userid', component: TodoListComponent},
 ];
 
 @NgModule({

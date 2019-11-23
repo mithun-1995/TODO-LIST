@@ -10,16 +10,19 @@ router.get('/', async function(req, res, next)
 	var username = req.query.username;
 	var password = req.query.password;
 
+	console.log(req.query)
 	var filePath = path.join(__dirname, 'LocalStorage.json');
 	console.log(filePath);
 
 	await fs.readFile(filePath, "utf8", (err, data) => {
 		if (err) throw err;
-		console.log("Got data",data);
+		console.log("Got data",username);
 		var userData = JSON.parse(data).Users;
-
-		if(userData[username] && userData[username].password == password) {
-			res.status(200).json({sucess: userData});
+		var user = userData[username];
+		console.log(user.username == username)
+		console.log(username.password == password)
+		if(user && user.username == username && user.password === password) {
+			res.status(200).json({success: user});
 		} else {
 			res.status(404).json({error : "User not found"});
 		}
