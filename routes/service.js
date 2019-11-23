@@ -107,6 +107,10 @@ function getTodoUUID(){
 module.exports = {
   getTodoForUSer: getToDosForUser,
 
+  getData : getDataFromStorage,
+
+  saveDataToStorage : saveData,
+
   addTodo: addTodoToUserList,
 
   deleteTodo : deleteTodoWithId,

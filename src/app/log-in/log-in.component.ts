@@ -10,6 +10,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class LogInComponent implements OnInit {
   userObject:any = {};
+  newUserObject:any = {};
+  isLogin:boolean = true;
+
   constructor(private http: HttpClient,
               private route: ActivatedRoute, 
               private router: Router,
@@ -23,11 +26,10 @@ export class LogInComponent implements OnInit {
     */
  todoLogin(){
   console.log("User Details: ",this.userObject);
-
-    var params = {
-      params: this.userObject
+    var request = {
+      params : this.userObject
     }
-    this.http.get('/api/v1/', params).subscribe(
+    this.http.get('/api/v1/', request).subscribe(
          // Successful responses call the first callback.
         (data:any) => {
           console.log(data)
@@ -39,6 +41,30 @@ export class LogInComponent implements OnInit {
         err => {
           console.log('Something went wrong!',err.error);
           var message = "User with "+this.userObject.username+" not found";
+          var action = "Dismiss";
+          this.openSnackBar(message ,action);
+        }
+    ); 
+}
+
+todoNewUser() {
+  console.log("New User Details: ",this.newUserObject);
+
+    this.http.post('/api/v1/addUser', this.newUserObject).subscribe(
+         // Successful responses call the first callback.
+        (data:any) => {
+          console.log(data)
+          this.isLogin = true;
+          this.router.navigate(['/user/'+data.success])
+        },
+        // Errors will call this callback instead:
+        err => {
+          console.log('Something went wrong!',err.error);
+          var message = null
+          if(err.error.success)
+            message = "User already exist"
+          else
+            message = "Failed to add new user";
           var action = "Dismiss";
           this.openSnackBar(message ,action);
         }

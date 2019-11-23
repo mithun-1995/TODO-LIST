@@ -1,30 +1,56 @@
-<div>
+<div *ngIf="isLogin">
+  <div fxFlex="40%"></div>
+  <mat-card fxFlex="20%" class="example-card">
+    <mat-card-header fxLayout="row" fxLayoutAlign="center center">
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <form class="example-form">
+    <mat-card-content fxLayout="column">
+        <mat-form-field fxFlex="100%">
+          <input matInput placeholder="Username" [(ngModel)]="userObject.username" name="username" required>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="100%">
+          <input matInput placeholder="Password" [(ngModel)]="userObject.password" type="password" name="password"
+            required>
+        </mat-form-field>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+  </form>
+    <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
+      <button mat-raised-button (click)="todoLogin()" color="primary">Login</button>
+    </mat-card-actions>
+    <div fxLayout="row" fxLayoutAlign="center center">
+        Don't have an account?&nbsp;<a href="#" (click)="isLogin=false">Sign Up</a>
+     </div>
+  </mat-card>
+
+</div>
+
+<div *ngIf="!isLogin">
     <div fxFlex="40%"></div>
     <mat-card fxFlex="20%" class="example-card">
-      <mat-card-header>
-        <mat-card-title>Login</mat-card-title>
+      <mat-card-header fxLayout="row" fxLayoutAlign="center center">
+        <mat-card-title>Add New User</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <form class="example-form">
-          <table class="example-full-width" cellspacing="0" style="width:100%;">
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width" fxLayoutFill>
-                <input matInput placeholder="Username" [(ngModel)]="userObject.username" name="username" required>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-            <td><mat-form-field class="example-full-width">
-              <input matInput placeholder="Password" [(ngModel)]="userObject.password"type="password" name="password" required>
-            </mat-form-field></td>
-          </tr></table>
-        </form>
+      <form class="example-form">
+      <mat-card-content fxLayout="column">
+          <mat-form-field fxFlex="100%">
+            <input matInput placeholder="Username" [(ngModel)]="newUserObject.username" name="username" required>
+          </mat-form-field>
+  
+          <mat-form-field fxFlex="100%">
+            <input matInput placeholder="Password" [(ngModel)]="newUserObject.password" type="password" name="password"
+              required>
+          </mat-form-field>
         <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button (click)="todoLogin()" color="primary">Login</button>
+    </form>
+      <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
+        <button mat-raised-button (click)="todoNewUser()" color="primary">Sign Up</button>
       </mat-card-actions>
+      <div fxLayout="row">
+          Already have an account?<a href="#" (click)="isLogin=true">Log In</a>
+       </div>
     </mat-card>
-  </div>
-    
+</div>

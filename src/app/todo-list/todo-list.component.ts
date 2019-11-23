@@ -25,6 +25,7 @@ export class TodoListComponent implements OnInit {
   showAddToDoPanel: any;
   newToDoObj: any;
   req:any;
+  todoIds:any = [];
 
   ngOnInit() {
     this.toggleObj = {};
@@ -39,6 +40,8 @@ export class TodoListComponent implements OnInit {
       (result: any) => {
         console.log(result.data);
         this.todoList = result.data;
+        this.todoIds = Object.keys(this.todoList)
+        console.log(this.todoIds)
       },
       err => {
         console.log('Something went wrong!', err.error);
@@ -54,6 +57,7 @@ export class TodoListComponent implements OnInit {
       (result: any) => {
         console.log(result.data);
         this.todoList = result.data;
+        this.todoIds = Object.keys(this.todoList)
         var message = "TODo added successfully....!!!";
         var action = "Cool";
         this.showAddToDoPanel = false;
@@ -115,6 +119,7 @@ export class TodoListComponent implements OnInit {
       (result: any) => {
         console.log(result.data);
         delete this.todoList[result.data];
+        this.todoIds = Object.keys(this.todoList)
         var message = "Deleted TODO successfully....!!!";
         var action = "Cool";
         this.showAddToDoPanel = false;

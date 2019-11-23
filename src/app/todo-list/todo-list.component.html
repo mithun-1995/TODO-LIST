@@ -11,8 +11,8 @@
             </div>
         </div>
         <hr>
-        <mat-card-content fxLayout="column" fxLayoutGap="10px">
-            <mat-card fxFlex *ngFor="let item of todoList | keyvalue let i = index" class="example-card"
+        <mat-card-content fxLayout="column" *ngIf="todoIds.length > 0" fxLayoutGap="10px">
+            <mat-card fxFlex  *ngFor="let item of todoList | keyvalue let i = index" class="example-card"
                 ng-init="toggleObj[item.key] = false">
                 <div fxLayout="row" fxLayout-align="center center" style="cursor: pointer;"
                     (click)="toggleObj[item.key] = !toggleObj[item.key]">
@@ -33,6 +33,9 @@
                 </mat-card-content>
             </mat-card>
         </mat-card-content>
+        <div fxLayout="row" fxLayout-align="center center" *ngIf="todoIds.length == 0">
+                <span>Your todo list is empty <span style="color:blue; cursor: pointer;" (click)="isEdit=false; newToDoObj = {data :{}}; showAddToDoPanel=true">Add New</span></span>
+        </div>
     </mat-card>
 
     <!-- Add/Update Todo -->
