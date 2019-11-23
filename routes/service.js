@@ -25,18 +25,25 @@ var saveData = function(stringObj){
   fs.writeFile(filePath, stringObj, 'utf8', function(err, data) {
     if (err) throw err;
     console.log("Updated file successfull");
-    fs.close()
   });
 };
 
 var deleteTodoWithId = function(reqBody, callback) {
+  console.log(reqBody)
   var userID = reqBody.userID;
-  var todoID = reqBody.todoID;
+  var todoID = reqBody.key;
   getDataFromStorage(function(data){
      if(data.ToDoList[userID] && data.ToDoList[userID][todoID]) {
        delete data.ToDoList[userID][todoID];
        console.log("Todo with id "+todoID+" deleted succesfully");
-       callback(data);
+       //storing to file
+        saveData(JSON.stringify(data), function(err, data) {
+          if (err) throw err;
+          console.log("Todo added successfull");
+          var todoObj = {todoId : id}
+          return id;
+        });
+       callback(todoID);
      } else {
        throw "Failed to delete todo";
      }
@@ -45,7 +52,7 @@ var deleteTodoWithId = function(reqBody, callback) {
 
 var updateTodoWithId = function(reqBody, callback){
   var userID = reqBody.userID;
-  var todoID = reqBody.todoID;
+  var todoID = reqBody.key;
   var updateData = reqBody.data;
   getDataFromStorage(function(data){
     if(data.ToDoList[userID] && data.ToDoList[userID][todoID]) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Routes, RouterModule, Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-log-in',
@@ -9,7 +10,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LogInComponent implements OnInit {
   userObject:any = {};
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
+  constructor(private http: HttpClient,
+              private route: ActivatedRoute, 
+              private router: Router,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -34,8 +38,18 @@ export class LogInComponent implements OnInit {
         // Errors will call this callback instead:
         err => {
           console.log('Something went wrong!',err.error);
+          var message = "User with "+this.userObject.username+" not found";
+          var action = "Dismiss";
+          this.openSnackBar(message ,action);
         }
     ); 
 }
 
+openSnackBar(message: string, action: string) {
+  this._snackBar.open(message, action, {
+    duration: 2000,
+  });
 }
+
+}
+

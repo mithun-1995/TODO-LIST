@@ -27,7 +27,8 @@ router.post('/add', async function(req, res, next) {
 
 /* delete todo listing. */
 router.delete('/delete', function(req, res, next) {
-    service.deleteTodo(req.body, function(dataObj){
+    console.log(req.query)
+    service.deleteTodo(req.query, function(dataObj){
         res.json({ data  : dataObj})
     });
 });

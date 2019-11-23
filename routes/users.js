@@ -19,8 +19,7 @@ router.get('/', async function(req, res, next)
 		console.log("Got data",username);
 		var userData = JSON.parse(data).Users;
 		var user = userData[username];
-		console.log(user.username == username)
-		console.log(username.password == password)
+
 		if(user && user.username == username && user.password === password) {
 			res.status(200).json({success: user});
 		} else {

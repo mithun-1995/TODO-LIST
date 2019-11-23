@@ -15,6 +15,7 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 //
 import { HttpClientModule } from '@angular/common/http';
@@ -40,7 +41,8 @@ import { LogInComponent } from './log-in/log-in.component';
     FormsModule,
     MatFormFieldModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
